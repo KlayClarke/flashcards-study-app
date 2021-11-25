@@ -30,11 +30,11 @@ canvas.grid(column=0, row=0, columnspan=2)
 
 # ------- BUTTONS ---------- #
 wrong_image = PhotoImage(file='images/wrong.png')
-wrong_button = Button(image=wrong_image, highlightthickness=0, command=wrong)
+wrong_button = Button(image=wrong_image, highlightthickness=0, command=wrong, cursor='hand2')
 wrong_button.grid(column=0, row=1)
 
 right_image = PhotoImage(file='images/right.png')
-right_button = Button(image=right_image, highlightthickness=0, command=right)
+right_button = Button(image=right_image, highlightthickness=0, command=right, cursor='hand2')
 right_button.grid(column=1, row=1)
 
 window.mainloop()
