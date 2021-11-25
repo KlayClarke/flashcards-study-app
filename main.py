@@ -17,10 +17,10 @@ def wrong():
 # ------------------ UI -------------------- #
 window = Tk()
 window.title('Flashcards')
-window.config(padx=50, pady=50)
+window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 # ------------- CARD FRONT and BACK --------- #
-canvas = Canvas(width=900, height=600)
+canvas = Canvas(width=900, height=600, bg=BACKGROUND_COLOR, highlightthickness=0)
 card_front = PhotoImage(file='images/card_front.png')
 canvas.create_image(450, 300, image=card_front)
 canvas.grid(column=0, row=0, columnspan=2)
