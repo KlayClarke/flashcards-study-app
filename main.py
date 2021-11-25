@@ -23,7 +23,10 @@ window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 canvas = Canvas(width=900, height=600, bg=BACKGROUND_COLOR, highlightthickness=0)
 card_front = PhotoImage(file='images/card_front.png')
 canvas.create_image(450, 300, image=card_front)
+title_text = canvas.create_text(450, 150, text='Title', font=('Arial', 40, 'italic'))
+word_text = canvas.create_text(450, 300, text='Word', font=('Arial', 60, 'bold'))
 canvas.grid(column=0, row=0, columnspan=2)
+
 
 # ------- BUTTONS ---------- #
 wrong_image = PhotoImage(file='images/wrong.png')
