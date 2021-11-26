@@ -6,7 +6,8 @@ BACKGROUND_COLOR = "#B1DDC6"
 
 try:
     data = pandas.read_csv('data/to_learn.csv')
-
+    if len(data) == 0:
+        data = pandas.read_csv('data/french_words.csv')
 except:
     data = pandas.read_csv('data/french_words.csv')
 
@@ -14,14 +15,13 @@ df = pandas.DataFrame(data)
 words_dict = df.to_dict(orient='records')
 
 current_card = {}
-need_to_learn = []
 
 
 # ------------------ BUTTONS FUNCTIONALITY --------------- #
 def next_card():
     global current_card, card_flip_wait
     window.after_cancel(card_flip_wait)
-    if len(words_dict) == 0:
+    if len(data) == 0:
         canvas.itemconfig(title_text, text='')
         canvas.itemconfig(word_text, text='YOU\'VE COMPLETED THE SET OF FLASHCARDS.\nPLEASE EXIT OUT TO TRY AGAIN!',
                           font=('Arial', 20, 'normal'))
