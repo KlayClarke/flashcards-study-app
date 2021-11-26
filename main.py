@@ -13,8 +13,8 @@ current_card = {}
 
 # ------------------ BUTTONS FUNCTIONALITY --------------- #
 def next_card():
-    global current_card
-    global card_flip_wait
+    global current_card, card_flip_wait
+    window.after_cancel(card_flip_wait)
     current_card = random.choice(words_dict)
     french_word = current_card['French']
     english_word = current_card['English']
@@ -28,14 +28,13 @@ def flip_card():
     canvas.itemconfig(canvas_image, image=card_back)
     canvas.itemconfig(title_text, text='English', fill='white')
     canvas.itemconfig(word_text, text=current_card['English'], fill='white')
-    window.after_cancel(card_flip_wait)
 
 
 # ------------------ UI -------------------- #
 window = Tk()
 window.title('Flashcards')
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
-card_flip_wait = None
+card_flip_wait = window.after(3000, flip_card)
 
 canvas = Canvas(width=900, height=600, bg=BACKGROUND_COLOR, highlightthickness=0)
 card_front = PhotoImage(file='images/card_front.png')
