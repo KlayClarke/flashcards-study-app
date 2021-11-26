@@ -1,4 +1,4 @@
-import csv
+import pandas
 import random
 from tkinter import *
 
@@ -17,23 +17,17 @@ word_text = canvas.create_text(450, 300, text='Word', font=('Arial', 60, 'bold')
 canvas.grid(column=0, row=0, columnspan=2)
 
 # --------------- CHANGE CARD --------------------------- #
-with open('data/french_words.csv') as file:
-    reader = csv.reader(file)
-    data = list(reader)
-french_text_display = data[0][0]
-english_text_display = data[0][1]
+data = pandas.read_csv('data/french_words.csv')
+df = pandas.DataFrame(data)
+data_dict = df.to_dict(orient='records')
 
 
 def card():
     random_num = random.randint(1, 102)
-    random_word_coupling = data[random_num]
-    random_french_word = random_word_coupling[0]
-    random_english_translation = random_word_coupling[1]
-    canvas.itemconfig(title_text, text=french_text_display)
+    random_word_coupling = data_dict[random_num]
+    random_french_word = random_word_coupling['French']
+    canvas.itemconfig(title_text, text='French')
     canvas.itemconfig(word_text, text=random_french_word)
-    # print(random_word_coupling)
-    # print(f'{french_text_display}: {random_french_word}')
-    # print(f'{english_text_display}: {random_english_translation}')
 
 
 card()
@@ -41,11 +35,11 @@ card()
 
 # ------------------ BUTTONS FUNCTIONALITY --------------- #
 def right():
-    print('correct')
+    card()
 
 
 def wrong():
-    print('incorrect')
+    card()
 
 
 # ------- BUTTONS ---------- #
